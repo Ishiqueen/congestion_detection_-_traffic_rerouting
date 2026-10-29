@@ -1,0 +1,31 @@
+First terminal
+wsl
+cd ~/sdn-congestion-project
+python3 run_static_controller.py [no o/p shown]
+[Go to 2nd terminal]
+
+
+Second terminal
+wsl
+cd ~/sdn-congestion-control
+sudo python3 topology.py
+[start typing at mininet]
+nodes
+net
+pingall [100% received]
+h2 iperf3 -s -D
+h1 iperf3 -c 10.0.0.2 -u -b 3M -t 10
+h1 iperf3 -c 10.0.0.2 -u -b 10M -t 20
+[stay in mininet and move to first terminal]
+
+
+First terminal
+ [terminate the previous run_static_controller.py]
+python3 -u run_controller.py
+monitoring starts
+
+
+Second terminal
+h1 iperf3 -c 10.0.0.2 -u -b 10M -t 20
+[congestion will be observed in first terminal] 
+
